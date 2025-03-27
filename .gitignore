@@ -1,4 +1,7 @@
-data/
+data/1/
 output.log
 error.log
 jbdeit.slurm
+cifar100_imagenet_style/
+fbkrep/deit/
+teacher_regnety160_cifar100.pth
