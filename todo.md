@@ -18,10 +18,11 @@ Data-Efficient Image Transformers & Distillation Through Attention"](https://arx
     The official implementation of DeiT is available on GitHub: 
 [DeiT GitHub Repository](https://github.com/facebookresearch/deit)
 
-5. Dataset Management and Acquisition: 
+5.DONE Dataset Management and Acquisition: 
 Utilize the  [CIFAR-100](https://www.kaggle.com/datasets/fedesoriano/cifar100) dataset, which contains 100 classes of images. 
 Split the dataset into 70% training, 15% validation, and 15% testing sets
 to ensure robust model evaluation.
+
 
 6. Analytics of the Source Code: 
 Develop a flow diagram illustrating the DeiT architecture,
