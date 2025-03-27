@@ -5,3 +5,4 @@ jbdeit.slurm
 cifar100_imagenet_style/
 fbkrep/deit/
 teacher_regnety160_cifar100.pth
+notebooks/cifar100_data/
