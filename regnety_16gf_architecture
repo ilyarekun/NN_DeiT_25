@@ -1,0 +1,37 @@
+// RegNetY-16GF
+digraph {
+	Input [label="Input Image
+[batch_size, 3, 224, 224]"]
+	Stem [label="Stem
+Conv2d(3→32, k=3, s=2)
+→ BN → ReLU
+[batch_size, 32, 112, 112]"]
+	Block1 [label="Block1
+2 ResBottleneckBlocks with SE
+32→224 channels, s=2
+[batch_size, 224, 56, 56]"]
+	Block2 [label="Block2
+4 ResBottleneckBlocks with SE
+224→448 channels, s=2
+[batch_size, 448, 28, 28]"]
+	Block3 [label="Block3
+11 ResBottleneckBlocks with SE
+448→1232 channels, s=2
+[batch_size, 1232, 14, 14]"]
+	Block4 [label="Block4
+1 ResBottleneckBlock with SE
+1232→3024 channels, s=2
+[batch_size, 3024, 7, 7]"]
+	AvgPool [label="AdaptiveAvgPool2d
+[batch_size, 3024, 1, 1]"]
+	FC [label="FC Layers
+Linear(3024→100) → Dropout(0.6) → Linear(100→100)
+[batch_size, 100]"]
+	Input -> Stem
+	Stem -> Block1
+	Block1 -> Block2
+	Block2 -> Block3
+	Block3 -> Block4
+	Block4 -> AvgPool
+	AvgPool -> FC
+}
