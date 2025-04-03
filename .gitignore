@@ -6,3 +6,5 @@ cifar100_imagenet_style/
 fbkrep/deit/
 notebooks/cifar100_data/
 teacher_regnety160_cifar100.pthdata/
+teacher_regnety160_cifar100.pth
+.ipynb_checkpoints/
