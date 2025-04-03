@@ -1,0 +1,39 @@
+// DistilledVisionTransformer
+digraph {
+	Input [label="Input Image
+[batch_size, 3, 224, 224]"]
+	PatchEmbed [label="Patch Embedding
+Conv2d(3, 192, k=16, s=16)
+→ [batch_size, 196, 192]"]
+	Input -> PatchEmbed
+	Tokens [label="Add [CLS] and [DIST] Tokens
+→ [batch_size, 198, 192]"]
+	PatchEmbed -> Tokens
+	PosEmbed [label="Add Positional Embeddings"]
+	Tokens -> PosEmbed
+	PosDrop [label="Positional Dropout (p=0.0)"]
+	PosEmbed -> PosDrop
+	Transformer [label="Transformer Blocks (x12)
+Each: LayerNorm → Attention (3 heads) → DropPath → LayerNorm → MLP (192→768→192, GELU)"]
+	PosDrop -> Transformer
+	FinalNorm [label="Final LayerNorm"]
+	Transformer -> FinalNorm
+	CLS [label="Extract [CLS] Token
+(index 0)"]
+	DIST [label="Extract [DIST] Token
+(index 1)"]
+	Head [label="head
+Linear(192→100)"]
+	HeadDist [label="head_dist
+Linear(192→100)"]
+	Logits [label="Logits
+[batch_size, 100]"]
+	DistLogits [label="Distillation Logits
+[batch_size, 100]"]
+	FinalNorm -> CLS
+	FinalNorm -> DIST
+	CLS -> Head
+	DIST -> HeadDist
+	Head -> Logits
+	HeadDist -> DistLogits
+}
